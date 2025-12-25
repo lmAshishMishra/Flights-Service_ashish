@@ -26,6 +26,13 @@ ex:
 ```
 PORT=3000
 ```
+
+-go inside the `src` folder and excute the following commond:
+```
+npx sequelize init
+```
+-By excuting this commond you you will get migereation and seeders folder along with a config.jsoninside the config folder.
+
 Inside the `src/config` folder create a file named `config.json` and write the following code:
 {
   "development": {
@@ -52,4 +59,5 @@ Inside the `src/config` folder create a file named `config.json` and write the f
 }
 ````
 If you are setting up your development environment,then write the username of your db,password of your db and indialect mention whatever db you are using  ex mysql,maria db etc
--If you 
+-If you are setting up test or prod environment ,make sure you also replace the hos with the hosted db url.
+
