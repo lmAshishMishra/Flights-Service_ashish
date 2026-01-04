@@ -18,12 +18,12 @@ async function createAirplane (req,res){
         SuccessResponse.data=airplane;
         return res
         .status(StatusCodes.CREATED)
-        .json({
+        .json(
            SuccessResponse
-        })
+        )
     } catch (error) {
         ErrorResponse.error =error;
-        return res.status(error.StatusCodes)
+        return res.status(error.statusCode)
         .json(ErrorResponse);
     }
 }
@@ -34,18 +34,42 @@ async function getAirplanes(req,res) {
         SuccessResponse.data=airplanes;
           return res
         .status(StatusCodes.CREATED)
-        .json({
+        .json(
            SuccessResponse
-        })
+        )
     } catch (error) {
          ErrorResponse.error =error;
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR)
+        return res.status(error.statusCode)
+        .json(ErrorResponse);
+    }
+}
+/**
+ * POST :/airplane/:id
+ * req-body {}
+ 
+ */
+async function getAirplane(req,res) {
+    try {
+        const airplane=await AirplaneService.getAirplane(req.params.id);
+        SuccessResponse.data=airplane;
+      
+          return res
+                    .status(StatusCodes.CREATED)
+                    .json(
+           SuccessResponse
+        )
+    } catch (error) {
+         ErrorResponse.error =error;
+        return res.status(error.statusCode)
         .json(ErrorResponse);
     }
 }
 
 
+
+
 module.exports ={
     createAirplane,
-    getAirplanes
+    getAirplanes,
+    getAirplane
 }
