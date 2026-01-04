@@ -43,7 +43,7 @@ const response=await this.model.findAll();
 
     //update
         async update(id,data){ //data->{col: value,....}
-     
+       
    const response=await this.model.update(data,{
     where: {
         id: id
