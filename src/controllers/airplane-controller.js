@@ -16,14 +16,36 @@ async function createAirplane (req,res){
             capacity:req.body.capacity
         });
         SuccessResponse.data=airplane;
-        return res.status(StatusCodes.CREATED).json({
+        return res
+        .status(StatusCodes.CREATED)
+        .json({
            SuccessResponse
         })
     } catch (error) {
         ErrorResponse.error =error;
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
+        return res.status(error.StatusCodes)
+        .json(ErrorResponse);
     }
 }
+
+async function getAirplanes(req,res) {
+    try {
+        const airplanes=await AirplaneService.getAirplanes();
+        SuccessResponse.data=airplanes;
+          return res
+        .status(StatusCodes.CREATED)
+        .json({
+           SuccessResponse
+        })
+    } catch (error) {
+         ErrorResponse.error =error;
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json(ErrorResponse);
+    }
+}
+
+
 module.exports ={
-    createAirplane
+    createAirplane,
+    getAirplanes
 }
