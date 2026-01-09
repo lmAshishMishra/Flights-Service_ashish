@@ -29,7 +29,40 @@ async function createCity(data) {
 }
 }
 
-module.exports = {
- createCity
+async function  destroyCity(id){
+  try {
+    const cities =await cityRepository.destroy(id);
+
+    return cities;
+  } catch (error) {
+  if(error.statusCode==StatusCodes.NOT_FOUND){
+       throw new AppError('The city you requested to delete not found',StatusCodes.NOT_FOUND)
+    }
+    
+     throw new AppError('cannot fetch data of all cities',StatusCodes.INTERNAL_SERVER_ERROR)
+  }
 }
+async function  updateCity(id,data){
+  try {
+   
+    const cities =await cityRepository.update(id,data);
+
+    return cities;
+  } catch (error) {
+  if(error.statusCode==StatusCodes.NOT_FOUND){
+       throw new AppError('The city you try to update not found ',StatusCodes.NOT_FOUND)
+    }
+    
+     throw new AppError('cannot u fetch data of all city',StatusCodes.INTERNAL_SERVER_ERROR)
+  }
+}
+
+
+module.exports = {
+ createCity,
+ destroyCity,
+ updateCity
+}
+
+
 

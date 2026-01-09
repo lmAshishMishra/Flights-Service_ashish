@@ -24,6 +24,7 @@ router
               .delete('/:id' ,
       
         AirplaneController.destroyAirplane);
+        
         router.patch(
             '/:id',AirplaneController.updateAirplane
         )

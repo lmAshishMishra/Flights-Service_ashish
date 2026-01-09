@@ -1,14 +1,26 @@
 const express =require('express');
 const {CityController} =require('../../controllers');
-
+const {CityMiddlewares}=require('../../middlewares');
 const router =express.Router();
 console.log("city routes loaded a");
-// /api/v1/airplanes POST
+// /api/v1/city POST
 console.log('cityRoutes');
 router
-    .post('/',CityController.createCity);
+    .post('/',
+        CityMiddlewares.validateCreateRequest,
+        CityController.createCity);
 
-// /api/v1/airplanes GET
+// /api/v1/city DELETE
+router
+    .delete('/:id',
+       
+        CityController.destroyCity);
+
+// /api/v1/city DELETE
+router
+    .patch('/:id',
+       
+        CityController.updateCity);
 
 
 
