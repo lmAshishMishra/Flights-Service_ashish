@@ -63,7 +63,7 @@ async function getAllFlights(req, res) {
         return res
                 .status(error.statusCode)
                 .json(ErrorResponse);
-    }
+    } 
 }
 module.exports = {
     createFlight,
